@@ -11,20 +11,27 @@ Write a method that determines if all the boxes can be opened.
     Return True if all boxes can be opened, else return False
 """
 
-
 def canUnlockAll(boxes):
     """
     method that determines if all the boxes can be opened
     """    
     boxes.sort()
     cont = 0
+    pendding, keys = [], []
 
     for index, i in enumerate(boxes, start=1):
-            if index < len(boxes) and boxes[index][0] == index:
-                print(boxes[index][0])
+        if index < len(boxes) and boxes[index][0] == index:
+            cont += 1
+            keys.extend(i)
+        else:
+            pendding.append(i)
+        
+    if cont != len(boxes)-1:
+        for i in range(len(pendding)):
+            if (len(set(keys) & set(pendding[i]))) >= 1:
                 cont += 1
 
-    if cont == len(boxes)-1:
-        return(True)
+    if cont == len(boxes):
+        return True
     else:
-        return(False)
+        return False
