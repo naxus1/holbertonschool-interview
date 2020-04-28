@@ -14,24 +14,16 @@ Write a method that determines if all the boxes can be opened.
 def canUnlockAll(boxes):
     """
     method that determines if all the boxes can be opened
-    """    
-    boxes.sort()
-    cont = 0
-    pendding, keys = [], []
-
-    for index, i in enumerate(boxes, start=1):
-        if index < len(boxes) and boxes[index][0] == index:
-            cont += 1
-            keys.extend(i)
-        else:
-            pendding.append(i)
-        
-    if cont != len(boxes)-1:
-        for i in range(len(pendding)):
-            if (len(set(keys) & set(pendding[i]))) >= 1:
-                cont += 1
-
-    if cont == len(boxes):
-        return True
-    else:
-        return False
+    """
+    keys = set(boxes[0])
+    pending = list(range(1, len(boxes)))
+    i = 0
+    while len(pending) != 0:
+        if i in keys and i in pending:
+            keys.update(set(boxes[i]))
+            pending.remove(i)
+            i = 0
+        i += 1
+        if i == len(boxes):
+            return False
+    return True
