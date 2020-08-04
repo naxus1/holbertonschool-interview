@@ -1,23 +1,24 @@
 #include "binary_trees.h"
 
 /**
-* binary_tree_node - Stores recursively each level in an array of strings
-* @parent: Pointer to the node to print
-* @value: Offset to print
-* Return: length of printed tree after process
-*/
-
+ * binary_tree_node - Creates a binary tree mode
+ *
+ * @parent: node parent
+ * @value: node value
+ * Return: pointer to the new node or NULL on failure
+ */
 binary_tree_t *binary_tree_node(binary_tree_t *parent, int value)
 {
-	binary_tree_t *newNode;
+	binary_tree_t *new;
 
-	newNode = (binary_tree_t *) malloc(sizeof(binary_tree_t));
-
-	if (newNode == NULL)
+	new = malloc(sizeof(binary_tree_t));
+	if (new == NULL)
 		return (NULL);
-	newNode->n = value;
-	newNode->left = NULL;
-	newNode->right = NULL;
-	newNode->parent = parent;
-	return (newNode);
+
+	new->parent = parent;
+	new->n = value;
+	new->left = NULL;
+	new->right = NULL;
+
+	return (new);
 }
